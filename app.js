@@ -6,6 +6,8 @@ const imageItems = document.getElementsByClassName("carousel-item");
 
 let currentImage = 0;
 
+let isTouchTheEnd = false;
+
 prevButton.style.visibility = "hidden";
 
 nextButton.addEventListener("click", moveToNextImage);
@@ -22,6 +24,7 @@ function moveToNextImage() {
 
   if (currentImage === imageItems.length - 1) {
     nextButton.style.visibility = "hidden";
+    isTouchTheEnd = true;
   }
 }
 
@@ -36,5 +39,15 @@ function moveToPrevImage() {
   if (currentImage === 0) {
     prevButton.style.visibility = "hidden";
     nextButton.style.visibility = "visible";
+    isTouchTheEnd = false;
   }
 }
+
+setInterval(() => {
+  if (isTouchTheEnd) {
+    moveToPrevImage();
+  } else {
+    moveToNextImage();
+  }
+}, 4000);
+// setInterval(moveToPrevImage, 4000);
