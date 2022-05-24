@@ -8,7 +8,11 @@ let currentImage = 0;
 
 prevButton.style.visibility = "hidden";
 
-nextButton.addEventListener("click", () => {
+nextButton.addEventListener("click", () => moveToNextImage());
+
+prevButton.addEventListener("click", () => moveToPrevImage());
+
+function moveToNextImage() {
   currentImage += 1;
   if (currentImage < imageItems.length) {
     imageItems[currentImage].classList.add("carousel-item-visible");
@@ -16,13 +20,12 @@ nextButton.addEventListener("click", () => {
     prevButton.style.visibility = "visible";
   }
 
-  // CurrentImage = 2
   if (currentImage === imageItems.length - 1) {
     nextButton.style.visibility = "hidden";
   }
-});
+}
 
-prevButton.addEventListener("click", () => {
+function moveToPrevImage() {
   if (currentImage !== 0) {
     currentImage -= 1;
     imageItems[currentImage + 1].classList.remove("carousel-item-visible");
@@ -33,4 +36,4 @@ prevButton.addEventListener("click", () => {
     prevButton.style.visibility = "hidden";
     nextButton.style.visibility = "visible";
   }
-});
+}
