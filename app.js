@@ -8,9 +8,9 @@ let currentImage = 0;
 
 prevButton.style.visibility = "hidden";
 
-nextButton.addEventListener("click", () => moveToNextImage());
+nextButton.addEventListener("click", moveToNextImage);
 
-prevButton.addEventListener("click", () => moveToPrevImage());
+prevButton.addEventListener("click", moveToPrevImage);
 
 function moveToNextImage() {
   currentImage += 1;
@@ -26,6 +26,7 @@ function moveToNextImage() {
 }
 
 function moveToPrevImage() {
+  nextButton.style.visibility = "visible";
   if (currentImage !== 0) {
     currentImage -= 1;
     imageItems[currentImage + 1].classList.remove("carousel-item-visible");
